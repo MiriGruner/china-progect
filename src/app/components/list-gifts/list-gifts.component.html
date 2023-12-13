@@ -1,0 +1,116 @@
+<p-toolbar class="my-toolbar" styleClass="mb-4">
+    <ng-template pTemplate="left">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+        <button pButton pRipple [label]="Delete" icon="pi pi-chart-pie" class="p-button-danger"
+            (click)="deleteSelectedgifts()" [disabled]="!selectedgifts || !selectedgifts.length"></button>
+    </ng-template>
+    <ng-template pTemplate="center">
+        <h1>Chinese Action</h1> 
+    </ng-template>
+   
+</p-toolbar>
+
+<!-- {{dt.value | json}} -->
+
+<div class="my-css">
+    <p-table #dt [value]="gifts" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['name','description','donor','price','image']" [(selection)]="selectedgifts"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage gifts</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="donor">Donor <p-sortIcon field="donor"></p-sortIcon></th>
+                <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gift>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="gift"></p-tableCheckbox>
+                </td>
+                <td>{{gift.id}}</td>
+                <td>{{gift.name}}</td>
+                <td>{{gift.price | currency:'ILS'}}</td>
+                <td>{{gift.description}}</td>
+                <td>{{gift.donor}}</td>
+                <td>{{gift.image}}</td>
+                <td></td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editGift(gift)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteGift(gift)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{gifts ? gifts.length : 0 }} gifts.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="giftDialog" [style]="{width: '450px'}" header="gift Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="gift.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !gift.name">Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="gift.description" required rows="3"
+                cols="20"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="donor">Donor</label>
+            <p-dropdown [(ngModel)]="gift.donor" inputId="donor" [options]="donors"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'product-badge status-' + option.value">{{option}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="price">Price</label>
+                <p-inputNumber id="price" [(ngModel)]="gift.price" mode="currency" currency="ILS"
+                    locale="en-US"></p-inputNumber>
+            </div>
+            <div class="p-field p-col">
+                <label for="img">Image</label>
+                <p-fileUpload id="img" [(ngModel)]="gift.image" [customUpload]="true"
+                    (uploadHandler)="onUpload($event)"></p-fileUpload>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savegift()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -1,15 +1,16 @@
 <p-toolbar class="my-toolbar" styleClass="mb-4">
     <ng-template pTemplate="left">
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
-            (click)="openNew()"></button>
         <button pButton pRipple [label]="Delete" icon="pi pi-chart-pie" class="p-button-danger"
             (click)="deleteSelectedgifts()" [disabled]="!selectedgifts || !selectedgifts.length"></button>
-    </ng-template>
+            <button (click)="goTolList()" pButton pRipple label="Go back To the gifts" icon="pi p-confirmDialog" class="p-button-help"></button>
+        </ng-template>
     <ng-template pTemplate="center">
-        <h1>Chinese Action</h1> 
+        <h1>Chinese Action cart</h1> 
     </ng-template>
    
 </p-toolbar>
+
+<!-- {{dt.value | json}} -->
 
 <div class="my-css">
     <p-table #dt [value]="gifts" [rows]="10" [paginator]="true"
@@ -53,8 +54,6 @@
                 <td>{{gift.image}}</td>
                 <td></td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editGift(gift)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                         (click)="deleteGift(gift)"></button>
                 </td>
@@ -107,7 +106,6 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savegift()"></button>
     </ng-template>
 </p-dialog>
 

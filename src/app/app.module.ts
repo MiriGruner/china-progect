@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { HomeManegerComponent } from './components/home-maneger/home-maneger.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
         ListDonorsComponent,
         HomeComponent,
         HomeManegerComponent,
-        UserListComponent
+        UserListComponent,
+        CartComponent
     ],
     imports: [
         BrowserModule,

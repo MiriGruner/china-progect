@@ -33,7 +33,15 @@ getAllGifts(){
   ;
 }
 
+placeOrder(){
+  if(sessionStorage.getItem("cart")=="[]"){
+   alert("your cart is empty")
+    return;
+  }
+    this.router.navigate(["../userDetails"],{relativeTo:this.activatedroute})
+  
 
+}
   deleteSelectedGifts() {
       this.confirmationService.confirm({
           message: 'Are you sure you want to delete the selected gifts?',
@@ -55,9 +63,8 @@ getAllGifts(){
           header: 'Confirm',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-            this.gifts = this.gifts.filter(e=>e.id == gift.id)
+            this.gifts = this.gifts.filter(e=>e.id != gift.id)
             sessionStorage.setItem("cart",JSON.stringify(this.gifts))
-            this.gift =new Gift();
           }
       });
         

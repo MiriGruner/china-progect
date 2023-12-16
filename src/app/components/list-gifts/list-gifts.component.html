@@ -57,6 +57,8 @@
                         (click)="editGift(gift)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                         (click)="deleteGift(gift)"></button>
+                    <button pButton pRipple label="Random" icon="pi pi-replay" class="p-button-rounded p-button-warning"
+                        (click)="randomUserWin()"></button>
                 </td>
             </tr>
         </ng-template>
@@ -108,6 +110,7 @@
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savegift()"></button>
+       
     </ng-template>
 </p-dialog>
 

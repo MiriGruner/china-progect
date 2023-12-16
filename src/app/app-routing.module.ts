@@ -7,18 +7,19 @@ import { HomeManegerComponent } from './components/home-maneger/home-maneger.com
 import { ListDonorsComponent } from './components/list-donors/list-donors.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
     {path:'',component:HomeComponent},
     {path:'maneger',component:HomeManegerComponent,children:[
         {path:"gifts",component:ListGiftsComponent},
-        {path:"donors",component:ListDonorsComponent}
+        {path:"donors",component:ListDonorsComponent},
+        {path:'users',component:UsersComponent}
     ]},
     {path:'user',component:UserListComponent},
-    {path:'cart',component:CartComponent}
-  //  {path:'gifts', component:ListGiftsComponent,// children:[
- //   {path:'edit/:id', component:EditGiftComponent}]
- //   },{path:'donors', component:ListGiftsComponent}
+    {path:'cart',component:CartComponent},
+    {path:'userDetails',component:UserDetailsComponent}
 ];
 
 @NgModule({

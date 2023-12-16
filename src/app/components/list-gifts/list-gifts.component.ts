@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Gift } from '../../models/Gift';
 import { GiftService } from 'src/app/services/gift.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -21,7 +22,10 @@ export class ListGiftsComponent implements OnInit {
 
   donors: any[]= ["tamar","shay","miri"];
 
-  constructor(private giftService: GiftService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private giftService: GiftService, 
+    private messageService: MessageService, 
+    private confirmationService: ConfirmationService,
+    private userService:UserService) { }
 
   ngOnInit() {
     this.getAllGifts()
@@ -115,6 +119,12 @@ getAllGifts(){
 
       return index;
   }
+  randomUserWin(){
+    var users;
+     this.userService.reloadUsers$.subscribe(x => {
+        this.userService.getUsers().subscribe(data => users = data);
+    
+  })}
 
 
   onUpload(files) {

@@ -26,6 +26,8 @@ import { HomeComponent } from './components/home/home.component';
 import { HomeManegerComponent } from './components/home-maneger/home-maneger.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +37,9 @@ import { CartComponent } from './components/cart/cart.component';
         HomeComponent,
         HomeManegerComponent,
         UserListComponent,
-        CartComponent
+        CartComponent,
+        UserDetailsComponent,
+        UsersComponent
     ],
     imports: [
         BrowserModule,

@@ -1,12 +1,10 @@
 <p-toolbar class="my-toolbar" styleClass="mb-4">
     <ng-template pTemplate="left">
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
-            (click)="openNew()"></button>
-        <button pButton pRipple [label]="Delete" icon="pi pi-chart-pie" class="p-button-danger"
-            (click)="deleteSelectedusers()" [disabled]="!selectedusers || !selectedusers.length"></button>
+        <!-- <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button> -->
     </ng-template>
     <ng-template pTemplate="center">
-        <h1>Chinese Action</h1> 
+        <h1 style="color: cadetblue;">Chinese Action</h1> 
     </ng-template>
    
 </p-toolbar>

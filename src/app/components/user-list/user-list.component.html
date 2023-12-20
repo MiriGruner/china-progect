@@ -1,11 +1,9 @@
 <p-toolbar class="my-toolbar" styleClass="mb-4">
     <ng-template pTemplate="left"> 
 <button (click)="goToCart()" pButton pRipple label="Go To Cart" icon="pi p-confirmDialog" class="p-button-help"></button>
-        <button pButton pRipple [label]="Delete" icon="pi pi-chart-pie" class="p-button-danger"
-            (click)="deleteSelectedgifts()" [disabled]="!selectedgifts || !selectedgifts.length"></button>
     </ng-template>
     <ng-template pTemplate="center">
-        <h1>Chinese Action</h1> 
+        <h1 style="color: cadetblue;">Chinese Action</h1> 
     </ng-template>
    
 </p-toolbar>
@@ -38,6 +36,7 @@
                 <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
                 <th pSortableColumn="donor">Donor <p-sortIcon field="donor"></p-sortIcon></th>
                 <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
+
                 <th></th>
             </tr>
         </ng-template>
@@ -51,7 +50,7 @@
                 <td>{{gift.price | currency:'ILS'}}</td>
                 <td>{{gift.description}}</td>
                 <td>{{gift.donor}}</td>
-                <td>{{gift.image}}</td>
+               <td><img src="../../../assets/Images/{{gift.image}}"/> </td>
                 <td></td>
                 <td>
                     <button pButton pRipple label="Add to Cart" icon="pi pi-plus" class="p-button-text" (click)="addToCart(gift)"></button>

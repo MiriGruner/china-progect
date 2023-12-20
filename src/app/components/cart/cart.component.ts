@@ -18,7 +18,7 @@ export class CartComponent  implements OnInit {
 
   selectedgifts: Gift[];
   submitted: boolean;
-
+ sum:number=0;
   donors: any[]= ["tamar","shay","miri"];
   cart:Gift;
   constructor(  private confirmationService: ConfirmationService,private activatedroute: ActivatedRoute,private router:Router) { }
@@ -26,11 +26,9 @@ export class CartComponent  implements OnInit {
   ngOnInit() {
     this.getAllGifts()
 
-  ///שליפת מערך תורמים
   }
 getAllGifts(){
   this.gifts=JSON.parse(sessionStorage.getItem("cart"))
-  ;
 }
 
 placeOrder(){
@@ -65,6 +63,7 @@ placeOrder(){
           accept: () => {
             this.gifts = this.gifts.filter(e=>e.id != gift.id)
             sessionStorage.setItem("cart",JSON.stringify(this.gifts))
+            this.sum-=gift.price
           }
       });
         

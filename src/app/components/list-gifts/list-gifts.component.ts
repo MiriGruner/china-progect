@@ -3,6 +3,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Gift } from '../../models/Gift';
 import { GiftService } from 'src/app/services/gift.service';
 import { UserService } from 'src/app/services/user.service';
+import { DonorService } from 'src/app/services/donor.service';
+import { Donor } from 'src/app/models/Donor';
 
 
 @Component({
@@ -20,17 +22,20 @@ export class ListGiftsComponent implements OnInit {
   selectedgifts: Gift[];
   submitted: boolean;
 
-  donors: any[]= ["tamar","shay","miri"];
+  donors:Donor[]=[];
 
   constructor(private giftService: GiftService, 
     private messageService: MessageService, 
     private confirmationService: ConfirmationService,
-    private userService:UserService) { }
+    private userService:UserService,
+    private donorService: DonorService) { }
 
   ngOnInit() {
     this.getAllGifts()
 
-  ///שליפת מערך תורמים
+    this.donorService.reloadDonors$.subscribe(x => {
+        this.donorService.getDonors().subscribe(data => this.donors = data);
+      })
   }
 getAllGifts(){
   this.giftService.reloadGifts$.subscribe(x => {

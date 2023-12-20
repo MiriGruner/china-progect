@@ -2,11 +2,9 @@
     <ng-template pTemplate="left">
         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
             (click)="openNew()"></button>
-        <button pButton pRipple [label]="Delete" icon="pi pi-chart-pie" class="p-button-danger"
-            (click)="deleteSelectedgifts()" [disabled]="!selectedgifts || !selectedgifts.length"></button>
     </ng-template>
     <ng-template pTemplate="center">
-        <h1>Chinese Action</h1> 
+        <h1 style="color:cadetblue;">Chinese Action</h1> 
     </ng-template>
    
 </p-toolbar>
@@ -50,7 +48,8 @@
                 <td>{{gift.price | currency:'ILS'}}</td>
                 <td>{{gift.description}}</td>
                 <td>{{gift.donor}}</td>
-                <td>{{gift.image}}</td>
+                <td><img src="../../../assets/Images/{{gift.image}}"/> </td>
+                <!-- <td ><img src="../../../assets/Images/"+gift.image/> </td> -->
                 <td></td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -85,14 +84,13 @@
         </div>
         <div class="p-field">
             <label for="donor">Donor</label>
-            <p-dropdown [(ngModel)]="gift.donor" inputId="donor" [options]="donors"
+            <p-dropdown [(ngModel)]="gift.donor.name" inputId="donor" [options]="donors"
                 placeholder="Select">
                 <ng-template let-option pTemplate="item">
-                    <span [class]="'product-badge status-' + option.value">{{option}}</span>
+                    <span [class]="'product-badge status-' + option.value">{{option.name}}</span>
                 </ng-template>
             </p-dropdown>
         </div>
-
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="price">Price</label>

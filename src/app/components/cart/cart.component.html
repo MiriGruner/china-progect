@@ -1,12 +1,10 @@
 <p-toolbar class="my-toolbar" styleClass="mb-4">
     <ng-template pTemplate="left">
-        <button pButton pRipple [label]="Delete" icon="pi pi-chart-pie" class="p-button-danger"
-            (click)="deleteSelectedgifts()" [disabled]="!selectedgifts || !selectedgifts.length"></button>
             <button (click)="goTolList()" pButton pRipple label="Go back To the gifts" icon="pi p-confirmDialog" class="p-button-help"></button>
             <button (click)="placeOrder()" pButton pRipple label="Place Order" icon="pi p-confirmDialog" class="p-button-help"></button>
         </ng-template>
     <ng-template pTemplate="center">
-        <h1>Chinese Action cart</h1> 
+        <h1 style="color: cadetblue ;">Chinese Action cart</h1> 
     </ng-template>
    
 </p-toolbar>
@@ -52,7 +50,7 @@
                 <td>{{gift.price | currency:'ILS'}}</td>
                 <td>{{gift.description}}</td>
                 <td>{{gift.donor}}</td>
-                <td>{{gift.image}}</td>
+                <td><img src="../../../assets/Images/{{gift.image}}"/> </td>
                 <td></td>
                 <td>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
@@ -64,10 +62,12 @@
             <div class="flex align-items-center justify-content-between">
                 In total there are {{gifts ? gifts.length : 0 }} gifts.
             </div>
+             <div class="flex align-items-center justify-content-between">
+                In total sum there are {{gifts ? gifts.length : 0 }} gifts.
+            </div>
         </ng-template>
     </p-table>
 </div>
-
 <p-dialog [(visible)]="giftDialog" [style]="{width: '450px'}" header="gift Details" [modal]="true"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
@@ -111,3 +111,4 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+

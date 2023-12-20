@@ -14,5 +14,8 @@
     margin-right: auto;
     direction: rtl;
 }
+.image{
+    background-image: url("../../../assets/Images/2.png");
+}
 
 

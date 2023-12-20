@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +15,7 @@ export class UserDetailsComponent implements OnInit{
   userDialog: boolean;
   users:User[];
   succ:boolean=false;
-  constructor(private userService:UserService,private messageService:MessageService ){}
+  constructor(private userService:UserService,private messageService:MessageService, private router:Router, private activatedRout: ActivatedRoute){}
   ngOnInit() {
     this.userDialog=true;
   }
@@ -27,6 +28,7 @@ getAllUsers(){
  hideDialog() {
     this.userDialog = false;
     this.submitted = false;
+
 }
 openNew() {
   this.user = new User();
@@ -43,5 +45,10 @@ addUser(){
   this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
  this.succ=true;
   this.hideDialog()
+}
+Cancel(){
+
+  this.hideDialog()
+  this.router.navigate(["../cart"],{relativeTo:this.activatedRout})
 }
 }
